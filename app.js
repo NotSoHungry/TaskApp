@@ -37,14 +37,31 @@ function loadEventListeners() {
     // Create text node and append to the li
     li.appendChild(document.createTextNode(taskValue));
     console.log(li);
+
+    // Add container element for the item's controls
+    const controlsContainer = document.createElement('div');
+    controlsContainer.className = "collection-item__controls";
+    li.appendChild(controlsContainer);
+
+    //Create edit button
     // Create new link element
-    const link = document.createElement('a');
+    const editLink = document.createElement('a');
     // Add class to the link
-    link.className = "delete-item secondary content";
+    editLink.className = "edit-item secondary content";
     // Add icon to the link
-    link.innerHTML = "<i class=\"fa fa-remove\"></i>"
+    editLink.innerHTML = "<i class=\"fa fa-pencil-square-o\"></i>"
     // Append the link to the li
-    li.appendChild(link);
+    controlsContainer.appendChild(editLink);
+
+    // Create edit button
+    // Create new link element
+    const removeLink = document.createElement('a');
+    // Add class to the link
+    removeLink.className = "delete-item secondary content";
+    // Add icon to the link
+    removeLink.innerHTML = "<i class=\"fa fa-remove\"></i>"
+    // Append the link to the li
+    controlsContainer.appendChild(removeLink);
     
     // Append the li to the list
     taskList.appendChild(li);
