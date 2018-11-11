@@ -1,0 +1,89 @@
+body {
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+}
+
+main {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+.card-form {
+  padding: 24px;
+}
+
+.form-control {
+  border: none;
+  border-bottom: 1px solid rgb(158, 158, 158);
+  border-radius: 0;
+  box-shadow: none;
+  transition: .1s;
+}
+
+.form-control:focus {
+  border: none;
+  box-shadow: none;
+  border-bottom: 2px solid rgb(38, 166, 154);
+}
+
+.add-task {
+  background-color: rgb(38, 166, 154);
+  text-transform: uppercase;
+  padding: 10px 30px 10px 30px;
+
+}
+
+.card-tasks {
+  padding: 10px 24px 10px 24px;
+  border-top: 1px solid rgba(160, 160, 160, 0.2);
+}
+
+.collection {
+  padding-left: 0;
+  list-style-type: none;
+  font-size: 1em;
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.collection-item {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px 20px;
+}
+
+.collection-item.hidden {
+  display: none;
+}
+
+.delete-item {
+  float: right;
+  color: rgb(255, 171, 64);
+  transition: color .3s ease;
+  cursor: pointer;
+}
+
+.delete-item:hover {
+  color: rgb(255, 216, 166);
+}
+
+.clear-tasks {
+  background: #000;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 10px 40px;
+}
+
+.edit-overlay {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vw;
+  background: rgba(0,0,0,.2);
+  z-index: 1;
+}
+
+.edit-overlay.hidden {
+  display: none;
+}
