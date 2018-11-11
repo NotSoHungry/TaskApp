@@ -57,15 +57,33 @@ main {
   display: none;
 }
 
+.collection-item__controls {
+  display: inline-block;
+}
+
 .delete-item {
-  float: right;
   color: rgb(255, 171, 64);
   transition: color .3s ease;
-  cursor: pointer;
+  /* border: solid 1px red; */
+  font-size: 18px;
+  padding-left: 5px;
+  padding-right: 15px;
 }
 
 .delete-item:hover {
   color: rgb(255, 216, 166);
+}
+
+.edit-item {
+  /* border: solid 1px black; */
+  padding-left: 15px;
+  padding-right: 5px;
+  transition: color .3s ease;
+}
+
+li div a {
+ /* border: solid 1px green; */
+ cursor: pointer;
 }
 
 .clear-tasks {
