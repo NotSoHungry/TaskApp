@@ -95,7 +95,7 @@ function loadEventListeners() {
       // Get task ID number
       taskID = Number(e.target.parentElement.parentElement.getAttribute('data-item-id'));
       // Remove the associated li element
-      e.target.parentElement.parentElement.remove();
+      e.target.parentElement.parentElement.parentElement.remove();
     }
 
     //Get the tasks array from the local storage
