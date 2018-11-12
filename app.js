@@ -98,9 +98,8 @@ function loadEventListeners() {
       taskID = Number(e.target.parentElement.parentElement.getAttribute('data-item-id'));
       // Remove the associated li element
       e.target.parentElement.parentElement.parentElement.remove();
-    }
 
-    //Get the tasks array from the local storage
+      //Get the tasks array from the local storage
     let tasks = JSON.parse(localStorage.getItem('tasks'));
     // Remove the task from the array
     tasks.splice(taskID, 1);
@@ -112,6 +111,8 @@ function loadEventListeners() {
     }
     // Update 'data-task-id" attributes for li elements
     taskList.querySelectorAll('.collection-item').forEach((item, index) => {item.setAttribute('data-item-id', index)});
+    
+    }
 
     e.preventDefault();
   }

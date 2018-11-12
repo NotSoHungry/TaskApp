@@ -82,11 +82,12 @@ main {
 }
 
 .collection-item__controls {
-  display: none;
+  display: inline-block;
+  visibility: hidden;
 }
 
 .collection-item:hover>.collection-item__controls {
-  display: inline-block;
+  visibility: visible;
 }
 
 .collection-item.edit:hover>.collection-item__controls {
