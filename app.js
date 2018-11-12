@@ -15,6 +15,8 @@ function loadEventListeners() {
   form.addEventListener('submit', addTask);
   // Remove task event
   taskList.addEventListener('click', removeTask);
+  // Edit task event
+  taskList.addEventListener('click', editTask);
   // Clear tasks event
   clearBtn.addEventListener('click', clearTasks);
   // Filter tasks event
@@ -112,6 +114,25 @@ function loadEventListeners() {
     taskList.querySelectorAll('.collection-item').forEach((item, index) => {item.setAttribute('data-item-id', index)});
 
     e.preventDefault();
+  }
+
+  // Edit tasks function
+  function editTask(e) {
+    if (e.target.parentElement.classList.contains("edit-item")) {
+      const editedElement = e.target.parentElement.parentElement.parentElement;
+
+      // Add 'edit' class to the element
+      editedElement.classList.toggle('edit');
+
+      // Create textarea element and place it inside the edited element
+      const textArea = document.createElement('input');
+      textArea.className = "collection-item__edit";
+      textArea.setAttribute('autofocus', 'autofocus');
+      textArea.value = editedElement.textContent;
+      
+      editedElement.appendChild(textArea);
+
+    }
   }
 
   // Clear tasks function
