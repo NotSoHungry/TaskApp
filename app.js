@@ -120,18 +120,52 @@ function loadEventListeners() {
   // Edit tasks function
   function editTask(e) {
     if (e.target.parentElement.classList.contains("edit-item")) {
-      const editedElement = e.target.parentElement.parentElement.parentElement;
+      const editedElement = e.target.parentElement.parentElement.parentElement,
+            editForm = document.createElement('form'),
+            formInput = document.createElement('input'),
+            editButtonsContainer = document.createElement('div'),
+            editAcceptButton = document.createElement('button'),
+            editCancelButton = document.createElement('button'),
+            overlayElement = document.createElement('div'),
+            firstBodyChild = document.body.firstElementChild
 
-      // Add 'edit' class to the element
+      // Configure edited element
+      // Apply 'edit' styling
       editedElement.classList.toggle('edit');
 
-      // Create textarea element and place it inside the edited element
-      const textArea = document.createElement('input');
-      textArea.className = "collection-item__edit";
-      textArea.setAttribute('autofocus', 'autofocus');
-      textArea.value = editedElement.textContent;
+      // Configure the form element
+      editForm.className = "collection-item__edit-form"
+
+      // Configure the input element
+      formInput.className = "edit-form__edit-input";
+      formInput.setAttribute('autofocus', 'autofocus');
+      formInput.value = editedElement.textContent;
+
+      // Configure the container for edit buttons
+      editButtonsContainer.className = "edit-form__edit-buttons";
+
+      // Configure accept change button
+      editAcceptButton.textContent = "Accept";
+      editAcceptButton.className = "btn btn-success edit-buttons__button accept"
+
+      // Configure cancel change button
+      editCancelButton.textContent = "Cancel",
+      editCancelButton.className = "btn btn-danger edit-buttons__button cancel"
+
+      // Add and configure dark overlay
+      overlayElement.className = "edit-overlay";
+      document.body.insertBefore(overlayElement, firstBodyChild);
+
+      // Combine edit elements
+      editButtonsContainer.appendChild(editAcceptButton);
+      editButtonsContainer.appendChild(editCancelButton);
+
+      editForm.appendChild(formInput);
+      editForm.appendChild(editButtonsContainer);
+      editedElement.appendChild(editForm);
+
       
-      editedElement.appendChild(textArea);
+
 
     }
   }
