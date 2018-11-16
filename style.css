@@ -98,6 +98,8 @@ main {
   background: #519839;
 }
 
+
+
 .collection-item:hover {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 2px 2px -2px rgba(0,0,0,0.2);
 }
@@ -117,6 +119,10 @@ main {
 
 .collection-item:hover>.collection-item__controls {
   visibility: visible;
+}
+
+.collection-item:hover>.collection-item__controls.hideControls {
+  visibility: hidden;
 }
 
 /* .collection-item.edit:hover>.collection-item__controls {
