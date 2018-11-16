@@ -90,7 +90,6 @@ function loadEventListeners() {
 
   // Remove task function
   function removeTask(e) {
-    console.log(e);
     let taskID;
     // Delegate event to "fa-remove" icon
     if (e.target.parentElement.classList.contains("delete-item")) {
@@ -121,35 +120,40 @@ function loadEventListeners() {
   function editTask(e) {
     if (e.target.parentElement.classList.contains("edit-item")) {
       const editedElement = e.target.parentElement.parentElement.parentElement,
+            editedElementControls = editedElement.firstElementChild,
             editForm = document.createElement('form'),
             formInput = document.createElement('input'),
             editButtonsContainer = document.createElement('div'),
-            editAcceptButton = document.createElement('button'),
-            editCancelButton = document.createElement('button'),
+            editAcceptButton = document.createElement('input'),
+            editCancelButton = document.createElement('input'),
             overlayElement = document.createElement('div'),
             firstBodyChild = document.body.firstElementChild
 
       // Configure edited element
       // Apply 'edit' styling
       editedElement.classList.toggle('edit');
+      editedElementControls.classList.toggle('hideControls');
 
       // Configure the form element
       editForm.className = "collection-item__edit-form"
 
       // Configure the input element
+      formInput.type = "text";
       formInput.className = "edit-form__edit-input";
-      formInput.setAttribute('autofocus', 'autofocus');
       formInput.value = editedElement.textContent;
 
       // Configure the container for edit buttons
       editButtonsContainer.className = "edit-form__edit-buttons";
 
       // Configure accept change button
-      editAcceptButton.textContent = "Accept";
+      editAcceptButton.type = "submit";
+      editAcceptButton.value = "Accept";
+      editAcceptButton.name = "editTask";
       editAcceptButton.className = "btn btn-success edit-buttons__button accept"
 
       // Configure cancel change button
-      editCancelButton.textContent = "Cancel",
+      editCancelButton.type = "submit";
+      editCancelButton.value = "Cancel",
       editCancelButton.className = "btn btn-danger edit-buttons__button cancel"
 
       // Add and configure dark overlay
@@ -163,8 +167,48 @@ function loadEventListeners() {
       editForm.appendChild(formInput);
       editForm.appendChild(editButtonsContainer);
       editedElement.appendChild(editForm);
+      formInput.focus();
 
-      
+      // Add event listeners for related functions
+      editButtonsContainer.addEventListener('click', finishEditing);
+      overlayElement.addEventListener('click', holdFocusOnForm);
+
+      //finishEditing function
+      function finishEditing(e) {
+        if (e.target.classList.contains('accept')) {
+          const newTaskValue = formInput.value,
+                currentTaskContent = editedElement.childNodes[0],
+                newTaskContent = document.createTextNode(newTaskValue);
+
+          // Update the displayed task element
+          editedElement.replaceChild(newTaskContent, currentTaskContent);
+
+          // Update task in local storage
+          let tasks = JSON.parse(localStorage.getItem('tasks'));
+          tasks[editedElement.getAttribute('data-item-id')] = newTaskValue;
+
+          localStorage.setItem('tasks', JSON.stringify(tasks));
+        } else {console.log("Well...")}
+
+        // Remove edit form and overlay
+        editForm.remove();
+        editedElement.classList.toggle('edit');
+        overlayElement.remove();
+        setTimeout(function() {
+          editedElementControls.classList.toggle('hideControls');
+        }, 100);
+        
+        
+
+        e.preventDefault();
+      }
+
+      // holdFocusOnForm function
+      function holdFocusOnForm(e) {
+        formInput.focus();
+
+        e.preventDefault();
+      }
 
 
     }
